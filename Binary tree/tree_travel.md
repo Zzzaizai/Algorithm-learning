@@ -9,6 +9,7 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 ```
+---
 前中后序遍历均使用递归算法。
 
 前序：root->left->right
