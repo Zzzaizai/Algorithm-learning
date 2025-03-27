@@ -1,4 +1,5 @@
-'''
+定义二叉树
+```cpp
 struct TreeNode {
     int val;
     TreeNode *left;
@@ -7,7 +8,17 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
-'''
+```
+前中后序遍历均使用递归算法。
+
+前序：root->left->right
+
+中序：left->root->right
+
+后序：left->right->root
+
+层序遍历使用广度优先算法，队列将当前层的节点自左向右push进，将其val依次push进vector，子节点push进队列。原节点需pop出。
+```cpp
 class Solution {
 public:
 // 前序遍历
@@ -75,3 +86,4 @@ public:
         return ans;
     }
 };
+```
