@@ -63,4 +63,38 @@ public:
 
 2. 若待删除的节点有一个子树，则用子树代替该节点。
 
-3. 若待删除的节点有两个子树，将其与中序遍历的后继节点交换后，此时待删除节点为叶，再将其删除即可。
+3. 若待删除的节点有两个子树，将其左子树放在该节点中序遍历后继节点的左子树上，再用该节点的右孩子替换该节点即可。
+
+首先递归找到待删除节点，然后判断是否符合第一二种情况。
+
+若是第三种情况，则遍历找到待删除节点中序遍历的后继节点tmp，将待删除节点的左子树连接到tmp左子树上，最后用待删除节点的右孩子覆盖。
+
+```cpp
+class Solution {
+public:
+    TreeNode* deleteNode(TreeNode* root, int key) {
+        if (!root)
+            return nullptr;
+        if (root->val > key)
+            root->left = deleteNode(root->left, key);
+        else if (root->val < key)
+            root->right = deleteNode(root->right, key);
+        else
+        {
+            if (root->left == nullptr && root->right == nullptr)
+                return nullptr;
+            if (root->left == nullptr)
+                return root->right;
+            if (root->right == nullptr)
+                return root->left;
+            TreeNode* tmp = root->right;
+            while (tmp->left != nullptr)
+                tmp = tmp->left;
+            TreeNode* leftnode = root->left;
+            tmp->left = leftnode;
+            root = root->right;
+        }
+        return root;
+    }
+};
+```
