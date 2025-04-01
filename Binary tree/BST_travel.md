@@ -23,3 +23,38 @@ public:
     }
 };
 ```
+---
+实现二叉搜索树迭代器，按中序遍历BST，hasNext函数返回是否有下一个节点，next函数返回下一个节点的val。
+
+使用队列存储中序遍历的BST，需要有一个虚拟的队列头，调用hasNext时判断队列大小是否大于1，调用next时首先pop出第一个节点，此时front就是需要返回的节点。
+```cpp
+class BSTIterator {
+public:
+    queue<TreeNode*> que;
+    BSTIterator(TreeNode* root) {
+        TreeNode* head = new TreeNode(0);
+        que.push(head);
+        helper(root);
+    }
+    void helper(TreeNode* root){
+        if (!root)
+            return;
+        helper(root->left);
+        que.push(root);
+        helper(root->right);
+    }
+    int next() {
+        que.pop();
+        if (que.front() == nullptr)
+            return 0;
+        int ans = que.front()->val;
+        return ans;
+    }
+    
+    bool hasNext() {
+        if (que.size() > 1)
+            return true;
+        return false;
+    }
+};
+```
