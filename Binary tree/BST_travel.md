@@ -58,3 +58,20 @@ public:
     }
 };
 ```
+找寻二叉搜索树的最近公共祖先。
+
+利用二叉搜索树的性质，若两节点的值都大于或小于根节点值，则将当前节点的右子树或左子树作为根节点递归，否则，当前节点就是最近公共祖先，直接返回。
+```cpp
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if (p->val > root->val && q->val > root->val)
+            return lowestCommonAncestor(root->right, p, q);
+        else if (p->val < root->val && q->val < root->val)
+            return lowestCommonAncestor(root->left, p, q);
+        else
+            return root;
+
+    }
+};
+```
