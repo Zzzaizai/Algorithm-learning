@@ -6,6 +6,8 @@ Kruskal算法用于求解加权无向图的最小生成树。
 
 贪心思想，每次选择不形成环的最小边，
 
+时间复杂度O(ElogE)，E为边数，空间复杂度O(V)，V为顶点数。
+
 连接所有点的最小费用
 ---
 [Leetcode #1584](https://leetcode.cn/problems/min-cost-to-connect-all-points/)
