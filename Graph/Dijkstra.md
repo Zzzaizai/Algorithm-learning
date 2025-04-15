@@ -10,3 +10,7 @@ Dijkstra算法只能用于非负权重的有向图，因其每次选择的都是
 
 网络延迟时间
 ---
+[Leetcode #743](https://leetcode.cn/problems/network-delay-time/)
+
+有n个节点，times[i] = (ui, vi, wi)列表表示源节点，目标节点以及时间，从k节点发出信号，求多久后所有节点都能收到信号，若有收不到返回-1。
+
